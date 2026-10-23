@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'ARCHIVE // TIKTOK PICKS — SWISS TECHNICAL INDEX',
-  description: 'Curated field-tested equipment and direct stream deals.',
+  title: 'FEATURED IN VIDEOS — PRODUCT DIRECTORY',
+  description: 'Direct links to products featured in our short-form videos.',
 };
 
 export default function RootLayout({

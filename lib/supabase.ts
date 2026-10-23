@@ -21,11 +21,12 @@ export interface Product {
   id: string;
   slug: string;
   title: string;
-  category: 'TECH' | 'SETUP' | 'DAILY';
-  original_price: number;
+  category: string;
+  original_price?: number | null;
   deal_price: number;
   affiliate_url: string;
+  image_url?: string | null;
   is_featured: boolean;
-  spec_note?: string;
-  rating?: string;
+  spec_note?: string | null;
+  rating?: string | null;
 }

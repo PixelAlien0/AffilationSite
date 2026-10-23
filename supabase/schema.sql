@@ -6,11 +6,15 @@ create table if not exists products (
   original_price numeric(10,2),
   deal_price numeric(10,2) not null,
   affiliate_url text not null,
+  image_url text,
   is_featured boolean default false,
   spec_note text,
   rating text,
   created_at timestamptz default now()
 );
+
+-- Add image_url column if upgrading from earlier schema
+alter table products add column if not exists image_url text;
 
 create table if not exists clicks (
   id bigint generated always as identity primary key,
