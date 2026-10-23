@@ -7,19 +7,20 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        canvas: '#FFFFFF',
-        surface: '#F9F9FB',
-        ink: '#000000',
-        rule: '#E5E5E5',
-        signal: '#FF2A00',
-        cobalt: '#0038FF',
+        canvas: '#FAF6F0',
+        surface: '#F2ECE1',
+        ink: '#181415',
+        rouge: '#D91B5C',
+        blush: '#FADADD',
+        olive: '#2A3B2C',
       },
       fontFamily: {
-        sans: ['"Archivo"', '"Inter Tight"', '"Helvetica Neue"', 'Arial', 'sans-serif'],
-        mono: ['"JetBrains Mono"', '"Space Mono"', 'monospace'],
+        serif: ['"Instrument Serif"', 'Georgia', 'serif'],
+        sans: ['"Plus Jakarta Sans"', '"Helvetica Neue"', 'sans-serif'],
+        mono: ['"Space Mono"', 'monospace'],
       },
       letterSpacing: {
-        swiss: '-0.035em',
+        editorial: '-0.025em',
       },
     },
   },

@@ -1,52 +1,55 @@
-@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  background-color: #FFFFFF;
-  color: #000000;
-  font-feature-settings: "ss01" 1, "zero" 1;
+  background-color: #FAF6F0;
+  color: #181415;
   -webkit-font-smoothing: antialiased;
 }
 
-/* Dot-Matrix Pattern (dotmatrix.zzzzshawn.cloud inspired) */
+/* Editorial Dot-Matrix Texture (dotmatrix.zzzzshawn.cloud inspired) */
 .bg-dot-matrix {
-  background-image: radial-gradient(#000000 1.25px, transparent 1.25px);
-  background-size: 10px 10px;
-}
-
-.bg-dot-matrix-light {
-  background-image: radial-gradient(#D4D4D4 1.25px, transparent 1.25px);
+  background-image: radial-gradient(#181415 1px, transparent 1px);
   background-size: 12px 12px;
 }
 
-.bg-dot-matrix-white {
-  background-image: radial-gradient(rgba(255, 255, 255, 0.28) 1.25px, transparent 1.25px);
+.bg-dot-matrix-rouge {
+  background-image: radial-gradient(#D91B5C 1px, transparent 1px);
+  background-size: 12px 12px;
+}
+
+.bg-dot-matrix-soft {
+  background-image: radial-gradient(#D5CBBF 1.25px, transparent 1.25px);
   background-size: 10px 10px;
 }
 
-/* Hard-edge offset shadow (Zero blur) */
-.shadow-hard {
-  box-shadow: 4px 4px 0px 0px #000000;
+/* Crisp Editorial Offset Shadow (Zero Blur) */
+.shadow-editorial {
+  box-shadow: 4px 4px 0px 0px #181415;
 }
 
-.shadow-hard-signal {
-  box-shadow: 4px 4px 0px 0px #FF2A00;
+.shadow-editorial-sm {
+  box-shadow: 2px 2px 0px 0px #181415;
 }
 
-/* Instant Mechanical Inversion (Zero Transition Lag) */
-.btn-swiss {
-  background-color: #000000;
-  color: #FFFFFF;
+.shadow-editorial-rouge {
+  box-shadow: 4px 4px 0px 0px #D91B5C;
+}
+
+/* Instant Boutique Button Inversion (Zero Transition Lag) */
+.btn-boutique {
+  background-color: #181415;
+  color: #FAF6F0;
   transition: none;
 }
 
-.btn-swiss:hover,
-.btn-swiss:active {
-  background-color: #FF2A00;
-  color: #FFFFFF;
+.btn-boutique:hover,
+.btn-boutique:active {
+  background-color: #D91B5C;
+  color: #FAF6F0;
 }
 
 /* Marquee Animation */
@@ -62,5 +65,5 @@
 .animate-marquee {
   display: flex;
   width: max-content;
-  animation: marquee 22s linear infinite;
+  animation: marquee 24s linear infinite;
 }
