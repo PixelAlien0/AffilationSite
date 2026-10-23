@@ -139,7 +139,11 @@ export default function KripplingFindsM3Storefront() {
   }, [activeCategory, searchQuery, sortBy, filteredProducts.length]);
 
   return (
-    <div className="min-h-screen bg-md-background text-md-on-background pb-24 selection:bg-md-primary-container selection:text-md-on-primary-container font-sans">
+    <div
+      className={`min-h-screen flex flex-col bg-md-background text-md-on-background selection:bg-md-primary-container selection:text-md-on-primary-container font-sans ${
+        featuredDeal ? 'pb-20 md:pb-0' : ''
+      }`}
+    >
       {/* 1. MATERIAL 3 TOP APP BAR */}
       <header className="sticky top-0 z-40 h-16 bg-md-surface-low border-b border-md-outline-variant/50 px-4 sm:px-8 flex items-center justify-between">
         <div className="flex items-center gap-3">
@@ -176,7 +180,7 @@ export default function KripplingFindsM3Storefront() {
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-8 pt-6">
+      <main className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-8 pt-6">
         {/* 2. MATERIAL 3 HERO CONTAINER (28px Extra-Large Radius) */}
         <section className="rounded-m3-xl bg-md-surface-low border border-md-outline-variant/60 p-6 sm:p-10 md:p-12 mb-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           {/* Left 7 Columns: Headline & M3 Search Bar */}
@@ -497,7 +501,7 @@ export default function KripplingFindsM3Storefront() {
       </main>
 
       {/* 6. MATERIAL 3 FOOTER */}
-      <footer className="border-t border-md-outline-variant/50 bg-md-surface-low py-8 px-4 sm:px-8">
+      <footer className="mt-auto border-t border-md-outline-variant/50 bg-md-surface-low py-8 px-4 sm:px-8">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2.5">
             <span className="font-serif text-2xl text-md-on-surface">
@@ -506,7 +510,7 @@ export default function KripplingFindsM3Storefront() {
             <span className="text-xs text-md-on-surface-variant">&bull; @KripplingFinds</span>
           </div>
           <div className="text-xs text-md-on-surface-variant text-center sm:text-right">
-            Material 3 Storefront &bull; Women’s Clothing &amp; Footwear &bull; ₱ PHP
+            Women’s Clothing, Footwear &amp; OOTD Directory &bull; ₱ PHP
           </div>
         </div>
       </footer>
