@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  background-color: #FFFFFF;
+  color: #000000;
+  font-feature-settings: "ss01" 1, "zero" 1;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Dot-Matrix Pattern (dotmatrix.zzzzshawn.cloud inspired) */
+.bg-dot-matrix {
+  background-image: radial-gradient(#000000 1px, transparent 1px);
+  background-size: 8px 8px;
+}
+
+.bg-dot-matrix-subtle {
+  background-image: radial-gradient(#CCCCCC 1px, transparent 1px);
+  background-size: 10px 10px;
+}
+
+/* Instant Mechanical Inversion (Zero Transition Lag) */
+.btn-swiss {
+  background-color: #000000;
+  color: #FFFFFF;
+  transition: none;
+}
+
+.btn-swiss:hover,
+.btn-swiss:active {
+  background-color: #FF2A00;
+  color: #FFFFFF;
+}
