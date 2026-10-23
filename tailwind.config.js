@@ -7,12 +7,13 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        canvas: '#FAF6F0',
-        surface: '#F2ECE1',
-        ink: '#181415',
-        rouge: '#D91B5C',
-        blush: '#FADADD',
-        olive: '#2A3B2C',
+        canvas: '#FBF9F6',
+        surface: '#F4EFE8',
+        ink: '#1E191A',
+        muted: '#756C6E',
+        line: '#E4DDD5',
+        rouge: '#B83253',
+        blush: '#F7E8EC',
       },
       fontFamily: {
         serif: ['"Instrument Serif"', 'Georgia', 'serif'],
@@ -20,7 +21,7 @@ module.exports = {
         mono: ['"Space Mono"', 'monospace'],
       },
       letterSpacing: {
-        editorial: '-0.025em',
+        editorial: '-0.02em',
       },
     },
   },

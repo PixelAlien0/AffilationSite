@@ -1,69 +1,24 @@
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  background-color: #FAF6F0;
-  color: #181415;
+  background-color: #FBF9F6;
+  color: #1E191A;
   -webkit-font-smoothing: antialiased;
 }
 
-/* Editorial Dot-Matrix Texture (dotmatrix.zzzzshawn.cloud inspired) */
-.bg-dot-matrix {
-  background-image: radial-gradient(#181415 1px, transparent 1px);
-  background-size: 12px 12px;
+/* Refined Boutique Button */
+.btn-atelier {
+  background-color: #1E191A;
+  color: #FBF9F6;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-.bg-dot-matrix-rouge {
-  background-image: radial-gradient(#D91B5C 1px, transparent 1px);
-  background-size: 12px 12px;
-}
-
-.bg-dot-matrix-soft {
-  background-image: radial-gradient(#D5CBBF 1.25px, transparent 1.25px);
-  background-size: 10px 10px;
-}
-
-/* Crisp Editorial Offset Shadow (Zero Blur) */
-.shadow-editorial {
-  box-shadow: 4px 4px 0px 0px #181415;
-}
-
-.shadow-editorial-sm {
-  box-shadow: 2px 2px 0px 0px #181415;
-}
-
-.shadow-editorial-rouge {
-  box-shadow: 4px 4px 0px 0px #D91B5C;
-}
-
-/* Instant Boutique Button Inversion (Zero Transition Lag) */
-.btn-boutique {
-  background-color: #181415;
-  color: #FAF6F0;
-  transition: none;
-}
-
-.btn-boutique:hover,
-.btn-boutique:active {
-  background-color: #D91B5C;
-  color: #FAF6F0;
-}
-
-/* Marquee Animation */
-@keyframes marquee {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-.animate-marquee {
-  display: flex;
-  width: max-content;
-  animation: marquee 24s linear infinite;
+.btn-atelier:hover,
+.btn-atelier:active {
+  background-color: #B83253;
+  color: #FBF9F6;
 }

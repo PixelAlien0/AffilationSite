@@ -6,7 +6,6 @@ import {
   ArrowUpRight,
   Search,
   ShoppingBag,
-  Sparkles,
   SlidersHorizontal,
   Heart,
   Check,
@@ -14,57 +13,48 @@ import {
 } from 'lucide-react';
 import { supabase, type Product } from '@/lib/supabase';
 
-/* Fashion & Atelier Geometric Motifs (shapes.gallery inspired - Zero Blurs) */
-function AtelierFlowerSeal({ className = 'w-16 h-16' }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 120 120" className={className} fill="currentColor">
-      <path d="M60 4 L71 39 L102 18 L81 49 L116 60 L81 71 L102 102 L71 81 L60 116 L49 81 L18 102 L39 71 L4 60 L39 49 L18 18 L49 39 Z" />
-    </svg>
-  );
-}
-
-function FashionDiamondStar({ className = 'w-6 h-6' }: { className?: string }) {
+/* Delicate Editorial Vector Motifs (shapes.gallery inspired - Clean, non-brutalist) */
+function EditorialStar({ className = 'w-4 h-4' }: { className?: string }) {
   return (
     <svg viewBox="0 0 60 60" className={className} fill="currentColor">
-      <polygon points="30,0 38,22 60,30 38,38 30,60 22,38 0,30 22,22" />
+      <path d="M30 0 C32 22 38 28 60 30 C38 32 32 38 30 60 C28 38 22 32 0 30 C22 28 28 22 30 0 Z" />
     </svg>
   );
 }
 
-function LookbookPlaceholderGraphic({ index }: { index: number }) {
+function LookbookSilhouette({ index }: { index: number }) {
   const motifs = [
-    // 01: Editorial Archway & Sunburst
-    <svg key="m1" viewBox="0 0 120 140" className="w-28 h-32 stroke-ink fill-none" strokeWidth="1.75">
-      <path d="M24,124 L24,56 A36,36 0 0,1 96,56 L96,124 Z" className="fill-blush" />
-      <circle cx="60" cy="56" r="14" className="fill-rouge stroke-ink" />
-      <line x1="12" y1="124" x2="108" y2="124" />
+    // 01: Minimalist Arch & Botanical Stem
+    <svg key="m1" viewBox="0 0 120 150" className="w-24 h-32 stroke-ink/40 fill-none" strokeWidth="1">
+      <path d="M25,130 L25,60 A35,35 0 0,1 95,60 L95,130 Z" className="fill-surface" />
+      <circle cx="60" cy="58" r="14" className="fill-blush stroke-rouge/50" />
+      <line x1="60" y1="72" x2="60" y2="115" className="stroke-ink/40" />
     </svg>,
-    // 02: Geometric Handbag / Silhouette Frame
-    <svg key="m2" viewBox="0 0 120 140" className="w-28 h-32 stroke-ink fill-none" strokeWidth="1.75">
-      <path d="M42,50 A18,18 0 0,1 78,50" strokeWidth="2.5" />
-      <polygon points="26,50 94,50 104,118 16,118" className="fill-canvas stroke-ink" />
-      <rect x="48" y="68" width="24" height="16" className="fill-rouge stroke-ink" />
+    // 02: Chic Handbag Outline
+    <svg key="m2" viewBox="0 0 120 150" className="w-24 h-32 stroke-ink/40 fill-none" strokeWidth="1">
+      <path d="M44,56 A16,16 0 0,1 76,56" strokeWidth="1.25" />
+      <polygon points="30,56 90,56 98,116 22,116" className="fill-surface" />
+      <circle cx="60" cy="76" r="4" className="fill-rouge stroke-none" />
     </svg>,
-    // 03: Concentric Couture Star
-    <svg key="m3" viewBox="0 0 120 140" className="w-28 h-32 stroke-ink fill-none" strokeWidth="1.75">
-      <rect x="22" y="22" width="76" height="96" className="fill-blush" />
-      <polygon points="60,34 69,58 94,68 69,78 60,102 51,78 26,68 51,58" className="fill-canvas stroke-ink" />
-      <circle cx="60" cy="68" r="5" className="fill-rouge stroke-none" />
+    // 03: Delicate Editorial Frame
+    <svg key="m3" viewBox="0 0 120 150" className="w-24 h-32 stroke-ink/40 fill-none" strokeWidth="1">
+      <rect x="24" y="24" width="72" height="102" rx="36" className="fill-surface" />
+      <path d="M60 50 C62 66 68 72 84 75 C68 78 62 84 60 100 C58 84 52 78 36 75 C52 72 58 66 60 50 Z" className="fill-blush stroke-rouge/40" />
     </svg>,
   ];
   return motifs[index % motifs.length];
 }
 
 const DEFAULT_FASHION_CATEGORIES = [
-  'ALL LOOKS',
-  'DRESSES & SETS',
-  'TOPS & KNITS',
-  'FOOTWEAR',
-  'BAGS & ACCS',
-  'DENIM & SKIRTS',
+  'All Looks',
+  'Dresses & Sets',
+  'Tops & Knits',
+  'Footwear',
+  'Bags & Accs',
+  'Denim & Skirts',
 ];
 
-export default function KripplingFindsFashionBoutique() {
+export default function KripplingFindsBoutique() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [activeCategory, setActiveCategory] = useState<string>('ALL LOOKS');
@@ -72,18 +62,8 @@ export default function KripplingFindsFashionBoutique() {
   const [searchQuery, setSearchQuery] = useState<string>('');
 
   const gridRef = useRef<HTMLDivElement>(null);
-  const sealRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (sealRef.current) {
-      gsap.to(sealRef.current, {
-        rotation: 360,
-        duration: 24,
-        repeat: -1,
-        ease: 'none',
-      });
-    }
-
     async function fetchProducts() {
       if (!supabase) {
         setLoading(false);
@@ -115,17 +95,18 @@ export default function KripplingFindsFashionBoutique() {
 
   // Build fashion categories dynamically from DB or fallback to curated women's wear tabs
   const dynamicCategories = Array.from(
-    new Set(products.map((p) => p.category?.toUpperCase()).filter(Boolean))
+    new Set(products.map((p) => p.category?.trim()).filter(Boolean))
   );
   const categories =
     dynamicCategories.length > 0
-      ? ['ALL LOOKS', ...dynamicCategories]
+      ? ['All Looks', ...dynamicCategories]
       : DEFAULT_FASHION_CATEGORIES;
 
   const filteredProducts = products
     .filter((p) => {
       const matchesCategory =
-        activeCategory === 'ALL LOOKS' || p.category?.toUpperCase() === activeCategory;
+        activeCategory === 'ALL LOOKS' ||
+        p.category?.toUpperCase() === activeCategory;
       const matchesSearch =
         !searchQuery.trim() ||
         p.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -147,11 +128,11 @@ export default function KripplingFindsFashionBoutique() {
     gsap.killTweensOf(cards);
     gsap.fromTo(
       cards,
-      { y: 20, opacity: 0 },
+      { y: 16, opacity: 0 },
       {
         y: 0,
         opacity: 1,
-        duration: 0.45,
+        duration: 0.5,
         stagger: 0.06,
         ease: 'power2.out',
       }
@@ -159,53 +140,44 @@ export default function KripplingFindsFashionBoutique() {
   }, [activeCategory, searchQuery, sortBy, filteredProducts.length]);
 
   return (
-    <div className="min-h-screen bg-canvas text-ink pb-16 selection:bg-rouge selection:text-canvas font-sans">
-      {/* 1. RUNWAY TICKER RIBBON */}
-      <div className="bg-ink text-canvas border-b border-ink overflow-hidden py-2 font-mono text-[11px] tracking-widest uppercase">
-        <div className="animate-marquee flex items-center space-x-10">
-          {Array.from({ length: 8 }).map((_, i) => (
-            <div key={i} className="flex items-center space-x-10 shrink-0">
-              <span className="text-rouge">✦</span>
-              <span>KRIPPLINGFINDS // WOMEN’S APPAREL, FOOTWEAR &amp; ACCESSORIES</span>
-              <span className="text-blush">✦</span>
-              <span>AS FEATURED ON @KRIPPLINGFINDS TIKTOK OOTD VIDEOS</span>
-              <span className="text-rouge">✦</span>
-              <span>ALL PRICES IN PHILIPPINE PESO (₱ PHP)</span>
-            </div>
-          ))}
-        </div>
+    <div className="min-h-screen bg-canvas text-ink pb-20 selection:bg-rouge selection:text-canvas font-sans">
+      {/* 1. SUBTLE TOP ANNOUNCEMENT BAR */}
+      <div className="bg-surface text-ink border-b border-line py-2.5 px-4 text-center text-xs tracking-wide">
+        <span className="inline-flex items-center gap-2 font-medium">
+          <EditorialStar className="w-3 h-3 text-rouge" />
+          <span>
+            Curated Women’s Clothing, Footwear &amp; OOTD Finds from{' '}
+            <strong className="font-semibold">@KripplingFinds</strong> on TikTok &bull; All Prices in{' '}
+            <strong className="font-semibold">₱ PHP</strong>
+          </span>
+          <EditorialStar className="w-3 h-3 text-rouge" />
+        </span>
       </div>
 
-      {/* 2. EDITORIAL BOUTIQUE HEADER */}
-      <header className="sticky top-0 z-40 h-16 bg-canvas border-b border-ink px-4 md:px-10 flex items-center justify-between">
+      {/* 2. CHIC BOUTIQUE HEADER */}
+      <header className="sticky top-0 z-40 h-20 bg-canvas/95 border-b border-line px-6 md:px-12 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="w-9 h-9 bg-rouge border border-ink flex items-center justify-center text-canvas shadow-editorial-sm">
-            <FashionDiamondStar className="w-4 h-4" />
-          </div>
-          <div>
-            <span className="font-serif text-2xl sm:text-3xl tracking-tight leading-none block">
-              Krippling<span className="italic text-rouge">Finds</span>
-            </span>
-          </div>
+          <span className="font-serif text-3xl sm:text-4xl tracking-tight text-ink">
+            Krippling<span className="italic text-rouge">Finds</span>
+          </span>
         </div>
 
-        <div className="hidden md:flex items-center gap-6 font-mono text-[11px] uppercase tracking-wider text-ink/70">
-          <span>WOMENSWEAR</span>
-          <span>&bull;</span>
-          <span>FOOTWEAR</span>
-          <span>&bull;</span>
-          <span>DAILY OOTD</span>
-        </div>
+        <nav className="hidden md:flex items-center gap-8 text-xs font-medium uppercase tracking-widest text-muted">
+          <span>Womenswear</span>
+          <span>Footwear</span>
+          <span>Bags &amp; Accessories</span>
+          <span>TikTok Edit</span>
+        </nav>
 
-        <div className="flex items-center gap-2.5">
-          <span className="hidden sm:inline-flex items-center border border-ink px-2.5 py-1 bg-blush font-mono text-[11px] font-bold">
+        <div className="flex items-center gap-3">
+          <span className="hidden sm:inline-flex items-center px-3 py-1.5 rounded-full bg-surface border border-line text-xs font-medium text-ink">
             ₱ PHP
           </span>
           <a
             href="https://www.tiktok.com/@KripplingFinds"
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-boutique px-3.5 py-2 border border-ink font-mono text-xs font-bold flex items-center gap-1.5 shadow-editorial-sm"
+            className="btn-atelier px-4 py-2.5 rounded-full text-xs font-medium tracking-wide flex items-center gap-2"
           >
             <Play className="w-3 h-3 fill-current" />
             <span>@KripplingFinds</span>
@@ -214,192 +186,160 @@ export default function KripplingFindsFashionBoutique() {
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto border-x border-ink">
-        {/* 3. HIGH-FASHION EDITORIAL LOOKBOOK HERO */}
-        <section className="grid grid-cols-1 lg:grid-cols-12 border-b border-ink">
-          {/* Left 8 Columns: Couture Editorial Headline + Search */}
-          <div className="lg:col-span-8 p-6 sm:p-10 md:p-14 border-b lg:border-b-0 lg:border-r border-ink relative overflow-hidden flex flex-col justify-between bg-canvas">
-            {/* Subtle Dot-Matrix Texture Accent */}
-            <div className="absolute top-0 right-0 w-48 h-48 bg-dot-matrix-soft opacity-60 pointer-events-none" />
-
-            <div className="relative z-10">
-              <div className="inline-flex items-center gap-2 bg-blush text-ink font-mono text-[11px] font-bold px-3 py-1 border border-ink mb-6 shadow-editorial-sm uppercase">
-                <Sparkles className="w-3.5 h-3.5 text-rouge" />
-                <span>CURATED TIKTOK LOOKBOOK &amp; SHOP</span>
-              </div>
-
-              <h1 className="font-serif text-5xl sm:text-7xl md:text-[5.25rem] leading-[0.94] tracking-editorial mb-6">
-                Everyday Wardrobe,{' '}
-                <span className="italic text-rouge font-normal">Statement Footwear</span> &amp;
-                Viral OOTD Finds.
-              </h1>
-
-              <p className="font-sans text-sm sm:text-base text-ink/80 max-w-xl leading-relaxed mb-8">
-                Seen an outfit, pair of heels, sneakers, or bag in our{' '}
-                <strong className="font-bold text-ink">@KripplingFinds</strong> short videos? Browse
-                the complete lookbook below and shop direct TikTok Shop links in{' '}
-                <strong className="font-mono text-xs bg-blush px-1.5 py-0.5 border border-ink">
-                  ₱ PHP
-                </strong>
-                .
-              </p>
+      <main className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12">
+        {/* 3. SOFT EDITORIAL HERO & SEARCH */}
+        <section className="py-12 md:py-16 border-b border-line grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+          {/* Left 7 Columns: Editorial Headline & Search */}
+          <div className="lg:col-span-7 space-y-6">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blush text-rouge text-xs font-medium tracking-wide">
+              <EditorialStar className="w-3 h-3" />
+              <span>Official TikTok OOTD &amp; Shopping Directory</span>
             </div>
 
-            {/* Boutique Search Bar */}
-            <div className="w-full relative z-10">
-              <label className="font-mono text-[11px] font-bold uppercase tracking-wider block mb-2">
-                FIND AN ITEM FROM A VIDEO (E.G. &ldquo;MARY JANES&rdquo;, &ldquo;LINEN DRESS&rdquo;, &ldquo;LOOK #01&rdquo;):
-              </label>
-              <div className="flex items-stretch border border-ink bg-canvas shadow-editorial">
-                <div className="px-4 flex items-center justify-center bg-blush border-r border-ink">
-                  <Search className="w-4 h-4 text-ink" />
-                </div>
+            <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl leading-[1.02] tracking-editorial text-ink">
+              Effortless Wardrobe,{' '}
+              <span className="italic text-rouge font-normal">Statement Footwear</span> &amp;
+              Everyday Finds.
+            </h1>
+
+            <p className="text-muted text-sm sm:text-base max-w-xl leading-relaxed">
+              Loved an outfit, pair of heels, sandals, or bag from our{' '}
+              <strong className="text-ink font-medium">@KripplingFinds</strong> short videos?
+              Browse the curated lookbook below and shop directly on TikTok Shop in Philippine Peso (₱).
+            </p>
+
+            {/* Clean Boutique Search Bar */}
+            <div className="pt-2 max-w-xl">
+              <div className="flex items-center rounded-full border border-line bg-white px-4 py-1.5 focus-within:border-ink">
+                <Search className="w-4 h-4 text-muted mr-3 shrink-0" />
                 <input
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Search clothing, shoes, bags, or look number..."
-                  className="w-full px-4 py-3.5 bg-transparent font-sans text-sm focus:outline-none placeholder:text-ink/40"
+                  placeholder="Search dresses, tops, shoes, bags, or look number..."
+                  className="w-full py-2 bg-transparent text-sm text-ink focus:outline-none placeholder:text-muted/70"
                 />
                 {searchQuery && (
                   <button
                     onClick={() => setSearchQuery('')}
-                    className="px-4 font-mono text-xs font-bold bg-ink text-canvas hover:bg-rouge"
+                    className="text-xs font-medium text-muted hover:text-ink px-2"
                   >
-                    CLEAR
+                    Clear
                   </button>
                 )}
               </div>
             </div>
           </div>
 
-          {/* Right 4 Columns: Atelier Lookbook Card & Rotating Seal */}
-          <div className="lg:col-span-4 bg-blush p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden bg-dot-matrix-rouge">
-            {/* Rotating Geometric Flower Seal */}
-            <div
-              ref={sealRef}
-              className="absolute -right-8 -top-8 text-rouge pointer-events-none"
-            >
-              <AtelierFlowerSeal className="w-32 h-32" />
-            </div>
-
-            <div className="relative z-10 flex items-center justify-between border-b border-ink pb-4 mb-6">
-              <div className="font-mono text-[11px] font-bold uppercase">
-                <span className="bg-rouge text-canvas px-2 py-0.5 border border-ink inline-block mb-1">
-                  SEASONAL EDIT
-                </span>
-                <span className="block text-ink">@KRIPPLINGFINDS CLOSET</span>
-              </div>
-              <div className="w-10 h-10 bg-canvas text-ink border border-ink flex items-center justify-center font-serif italic text-xl shadow-editorial-sm">
-                KF
-              </div>
-            </div>
-
-            {/* 9:16 OOTD Shopping Guide Card */}
-            <div className="relative z-10 bg-canvas border border-ink p-6 shadow-editorial my-auto">
-              <div className="flex items-center justify-between border-b border-ink pb-3 mb-4">
-                <span className="font-serif italic text-2xl text-rouge">
-                  How to Shop the Look
-                </span>
-                <span className="font-mono text-[10px] font-bold bg-ink text-canvas px-2 py-0.5">
-                  OOTD GUIDE
-                </span>
+          {/* Right 5 Columns: Soft Archway Editorial Card */}
+          <div className="lg:col-span-5">
+            <div className="bg-surface border border-line rounded-2xl p-6 sm:p-8 relative overflow-hidden">
+              <div className="flex items-center justify-between border-b border-line pb-4 mb-6">
+                <div>
+                  <span className="text-[11px] font-semibold uppercase tracking-widest text-rouge block">
+                    The Closet Edit
+                  </span>
+                  <span className="font-serif text-2xl text-ink">
+                    How to Shop Our Videos
+                  </span>
+                </div>
+                <div className="w-10 h-10 rounded-full bg-blush text-rouge flex items-center justify-center font-serif italic text-lg">
+                  KF
+                </div>
               </div>
 
-              <ol className="space-y-3.5 text-xs">
-                <li className="flex items-start gap-3">
-                  <span className="font-mono bg-rouge text-canvas font-bold px-2 py-0.5 text-[10px] border border-ink shrink-0">
-                    01
+              <ol className="space-y-4 text-sm text-ink/80">
+                <li className="flex items-start gap-3.5">
+                  <span className="w-6 h-6 rounded-full bg-white border border-line text-xs font-semibold flex items-center justify-center shrink-0 text-rouge">
+                    1
                   </span>
                   <span className="leading-relaxed">
-                    Spot an outfit, dress, or pair of shoes on{' '}
-                    <strong>@KripplingFinds</strong> TikTok.
+                    Spot a dress, top, or pair of shoes in a{' '}
+                    <strong className="text-ink font-medium">@KripplingFinds</strong> short video.
                   </span>
                 </li>
-                <li className="flex items-start gap-3">
-                  <span className="font-mono bg-blush text-ink font-bold px-2 py-0.5 text-[10px] border border-ink shrink-0">
-                    02
+                <li className="flex items-start gap-3.5">
+                  <span className="w-6 h-6 rounded-full bg-white border border-line text-xs font-semibold flex items-center justify-center shrink-0 text-rouge">
+                    2
                   </span>
                   <span className="leading-relaxed">
-                    Match the <strong>Look #</strong> or filter by Clothing, Footwear, or Bags below.
+                    Search the item name above or filter by category (Clothing, Footwear, Bags).
                   </span>
                 </li>
-                <li className="flex items-start gap-3">
-                  <span className="font-mono bg-ink text-canvas font-bold px-2 py-0.5 text-[10px] border border-ink shrink-0">
-                    03
+                <li className="flex items-start gap-3.5">
+                  <span className="w-6 h-6 rounded-full bg-white border border-line text-xs font-semibold flex items-center justify-center shrink-0 text-rouge">
+                    3
                   </span>
                   <span className="leading-relaxed">
-                    Tap <strong>SHOP THIS PIECE</strong> to checkout directly on TikTok Shop in{' '}
-                    <strong>₱ PHP</strong>.
+                    Tap <strong className="text-ink font-medium">Shop This Piece</strong> to open the verified listing in <strong className="text-ink font-medium">₱ PHP</strong>.
                   </span>
                 </li>
               </ol>
-            </div>
 
-            <div className="relative z-10 mt-6 pt-4 border-t border-ink flex items-center justify-between font-mono text-[11px] font-bold">
-              <span>CURATED FOR HER</span>
-              <span className="text-rouge">✦ DIRECT TIKTOK LINKS</span>
+              <div className="mt-6 pt-4 border-t border-line flex items-center justify-between text-xs text-muted">
+                <span>Updated with every TikTok post</span>
+                <span className="text-rouge font-medium">100% Direct Links</span>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* 4. WARDROBE CATEGORY TABS & SORT BAR */}
-        <section className="border-b border-ink bg-surface flex flex-col md:flex-row md:items-center justify-between">
-          <div className="flex overflow-x-auto border-b md:border-b-0 border-ink">
+        {/* 4. SOFT PILL CATEGORY NAVIGATION & SORT BAR */}
+        <section className="py-6 flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-line">
+          <div className="flex items-center gap-2 overflow-x-auto pb-1 md:pb-0">
             {categories.map((category) => {
-              const isActive = activeCategory === category;
+              const isActive = activeCategory === category.toUpperCase();
               return (
                 <button
                   key={category}
-                  onClick={() => setActiveCategory(category)}
-                  className={`px-5 py-4 font-mono text-xs font-bold border-r border-ink uppercase whitespace-nowrap transition-none flex items-center gap-2 ${
+                  onClick={() => setActiveCategory(category.toUpperCase())}
+                  className={`px-4 py-2 rounded-full text-xs font-medium whitespace-nowrap transition-colors ${
                     isActive
-                      ? 'bg-rouge text-canvas'
-                      : 'bg-canvas text-ink hover:bg-blush'
+                      ? 'bg-ink text-canvas'
+                      : 'bg-surface text-ink/80 hover:bg-blush hover:text-rouge border border-line'
                   }`}
                 >
-                  {isActive && <span>✦</span>}
-                  <span>{category}</span>
+                  {category}
                 </button>
               );
             })}
           </div>
 
-          <div className="px-4 py-2.5 flex items-center justify-between md:justify-end gap-3 font-mono text-xs bg-canvas md:border-l border-ink">
-            <span className="flex items-center gap-1.5 text-ink/70 font-bold">
+          <div className="flex items-center justify-between md:justify-end gap-2.5 text-xs">
+            <span className="flex items-center gap-1.5 text-muted font-medium">
               <SlidersHorizontal className="w-3.5 h-3.5" />
-              SORT BY:
+              Sort:
             </span>
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value as typeof sortBy)}
-              className="bg-surface border border-ink px-2.5 py-1 font-mono text-xs font-bold focus:outline-none cursor-pointer"
+              className="bg-white border border-line rounded-full px-3.5 py-1.5 text-xs font-medium text-ink focus:outline-none cursor-pointer"
             >
-              <option value="NEWEST">NEWEST ARRIVALS</option>
-              <option value="PRICE_LOW">PRICE: LOW TO HIGH (₱)</option>
-              <option value="PRICE_HIGH">PRICE: HIGH TO LOW (₱)</option>
+              <option value="NEWEST">Newest Arrivals</option>
+              <option value="PRICE_LOW">Price: Low to High (₱)</option>
+              <option value="PRICE_HIGH">Price: High to Low (₱)</option>
             </select>
           </div>
         </section>
 
-        {/* 5. LOOKBOOK PRODUCT GRID (PORTRAIT 3:4 FASHION ASPECT RATIO) */}
+        {/* 5. LOOKBOOK PRODUCT GRID */}
         {loading ? (
-          <section className="p-20 font-mono text-xs font-bold uppercase text-center bg-canvas">
-            LOADING @KRIPPLINGFINDS WARDROBE...
+          <section className="py-24 text-center text-sm text-muted">
+            Loading @KripplingFinds lookbook...
           </section>
         ) : filteredProducts.length === 0 ? (
-          <section className="p-12 sm:p-20 bg-dot-matrix-soft border-b border-ink flex flex-col items-center justify-center text-center">
-            <div className="border border-ink bg-canvas p-8 max-w-md w-full shadow-editorial space-y-4">
-              <div className="w-12 h-12 bg-blush text-rouge border border-ink mx-auto flex items-center justify-center">
+          <section className="py-20 flex flex-col items-center justify-center text-center">
+            <div className="bg-surface border border-line rounded-2xl p-10 max-w-md w-full space-y-3">
+              <div className="w-11 h-11 rounded-full bg-blush text-rouge mx-auto flex items-center justify-center">
                 <ShoppingBag className="w-5 h-5" />
               </div>
-              <div className="font-serif italic text-3xl text-ink">
-                {products.length === 0 ? 'New Collection Dropping Soon' : 'No Matching Pieces Found'}
-              </div>
-              <p className="font-sans text-xs text-ink/70 leading-relaxed">
+              <h2 className="font-serif text-3xl text-ink">
+                {products.length === 0 ? 'New Collection Coming Soon' : 'No Matching Pieces'}
+              </h2>
+              <p className="text-xs text-muted leading-relaxed">
                 {products.length === 0
-                  ? 'Add your clothing, footwear, and accessory finds in your Supabase products table (with PHP prices) to populate the lookbook.'
-                  : `We couldn't find any pieces matching "${searchQuery}". Try another keyword or select "ALL LOOKS".`}
+                  ? 'Add your clothing, footwear, and accessory finds in your Supabase products table (with PHP prices) to display them in your boutique.'
+                  : `We couldn't find any items matching "${searchQuery}". Try clearing your search or choosing another category.`}
               </p>
               {searchQuery && (
                 <button
@@ -407,9 +347,9 @@ export default function KripplingFindsFashionBoutique() {
                     setSearchQuery('');
                     setActiveCategory('ALL LOOKS');
                   }}
-                  className="btn-boutique px-5 py-2.5 font-mono text-xs font-bold uppercase border border-ink inline-block"
+                  className="btn-atelier px-5 py-2.5 rounded-full text-xs font-medium inline-block mt-2"
                 >
-                  VIEW ALL LOOKS
+                  View All Looks
                 </button>
               )}
             </div>
@@ -417,7 +357,7 @@ export default function KripplingFindsFashionBoutique() {
         ) : (
           <section
             ref={gridRef}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 border-b border-ink bg-canvas"
+            className="py-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8"
           >
             {filteredProducts.map((product, idx) => {
               const discountPct =
@@ -433,99 +373,85 @@ export default function KripplingFindsFashionBoutique() {
               return (
                 <article
                   key={product.id}
-                  className="lookbook-card flex flex-col justify-between border-b sm:border-r border-ink bg-canvas group"
+                  className="lookbook-card flex flex-col justify-between bg-white border border-line rounded-xl overflow-hidden group"
                 >
                   <div>
-                    {/* Editorial Card Header */}
-                    <div className="px-4 py-3 border-b border-ink flex items-center justify-between font-mono text-xs bg-surface">
-                      <span className="font-bold tracking-wider">LOOK #{lookNumber}</span>
-                      <div className="flex items-center gap-1.5">
-                        <span className="border border-ink bg-canvas px-2 py-0.5 text-[10px] font-bold uppercase">
-                          {product.category}
-                        </span>
+                    {/* Portrait 4:5 Fashion Image Container */}
+                    <div className="aspect-[4/5] w-full bg-surface relative flex items-center justify-center overflow-hidden border-b border-line">
+                      {/* Look Number Pill */}
+                      <span className="absolute top-3 left-3 z-10 bg-white/95 border border-line px-2.5 py-1 rounded-full text-[11px] font-medium text-ink">
+                        Look #{lookNumber}
+                      </span>
+
+                      {/* Discount or Featured Badge */}
+                      <div className="absolute top-3 right-3 z-10 flex flex-col items-end gap-1.5">
                         {discountPct > 0 && (
-                          <span className="bg-rouge text-canvas border border-ink px-2 py-0.5 text-[10px] font-bold">
-                            -{discountPct}% OFF
+                          <span className="bg-rouge text-white px-2.5 py-0.5 rounded-full text-[11px] font-medium">
+                            -{discountPct}%
+                          </span>
+                        )}
+                        {product.is_featured && (
+                          <span className="bg-blush text-rouge border border-rouge/20 px-2.5 py-0.5 rounded-full text-[10px] font-semibold">
+                            Featured Fit
                           </span>
                         )}
                       </div>
-                    </div>
-
-                    {/* Portrait 4:5 Fashion Frame */}
-                    <div className="aspect-[4/5] w-full border-b border-ink bg-surface relative flex items-center justify-center overflow-hidden p-5">
-                      {product.is_featured && (
-                        <div className="absolute top-3 left-3 z-10 bg-rouge text-canvas border border-ink px-2.5 py-1 font-mono text-[10px] font-bold uppercase shadow-editorial-sm">
-                          ✦ MUST-HAVE FIND
-                        </div>
-                      )}
-
-                      {product.rating && (
-                        <div className="absolute top-3 right-3 z-10 bg-canvas text-ink border border-ink px-2 py-0.5 font-mono text-[10px] font-bold">
-                          ★ {product.rating}
-                        </div>
-                      )}
 
                       {product.image_url ? (
                         <img
                           src={product.image_url}
                           alt={product.title}
-                          className="w-full h-full object-cover border border-ink bg-canvas"
+                          className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
                         />
                       ) : (
-                        <div className="w-full h-full border border-ink bg-canvas flex flex-col items-center justify-center p-6 shadow-editorial">
-                          <LookbookPlaceholderGraphic index={idx} />
-                          <span className="font-serif italic text-base text-ink/70 mt-3">
-                            KripplingFinds Atelier
+                        <div className="flex flex-col items-center justify-center p-6 text-center">
+                          <LookbookSilhouette index={idx} />
+                          <span className="font-serif italic text-sm text-muted mt-2">
+                            KripplingFinds Edit
                           </span>
                         </div>
                       )}
                     </div>
 
-                    {/* Piece Title & Styling Note */}
-                    <div className="p-5 pb-3">
-                      <h2 className="font-serif text-2xl leading-snug text-ink group-hover:text-rouge">
+                    {/* Product Info */}
+                    <div className="p-4 pb-2">
+                      <div className="flex items-center justify-between text-[11px] text-muted uppercase tracking-wider mb-1">
+                        <span>{product.category}</span>
+                        {product.rating && <span>★ {product.rating}</span>}
+                      </div>
+                      <h2 className="font-serif text-2xl leading-snug text-ink group-hover:text-rouge transition-colors">
                         {product.title}
                       </h2>
                       {product.spec_note && (
-                        <p className="font-sans text-xs text-ink/70 mt-1.5 leading-relaxed">
+                        <p className="text-xs text-muted mt-1 leading-relaxed">
                           {product.spec_note}
                         </p>
                       )}
                     </div>
                   </div>
 
-                  {/* PHP Price Tag & Shop Button */}
-                  <div className="p-5 pt-2">
-                    <div className="bg-blush/50 border border-ink p-3 mb-3 flex items-baseline justify-between font-mono">
-                      <div>
-                        <span className="text-[10px] text-ink/60 block uppercase font-bold">
-                          TIKTOK SHOP PRICE
-                        </span>
-                        <span className="text-2xl font-bold text-ink">
-                          {formatPhp(Number(product.deal_price))}
-                        </span>
-                      </div>
+                  {/* Price & Action */}
+                  <div className="p-4 pt-3">
+                    <div className="flex items-baseline gap-2 mb-3">
+                      <span className="text-lg font-bold text-ink">
+                        {formatPhp(Number(product.deal_price))}
+                      </span>
                       {product.original_price && (
-                        <div className="text-right">
-                          <span className="text-[10px] text-ink/60 block uppercase">
-                            REGULAR
-                          </span>
-                          <span className="text-xs line-through text-ink/40">
-                            {formatPhp(Number(product.original_price))}
-                          </span>
-                        </div>
+                        <span className="text-xs line-through text-muted">
+                          {formatPhp(Number(product.original_price))}
+                        </span>
                       )}
                     </div>
 
                     <a
                       href={`/go/${product.slug}`}
-                      className="btn-boutique w-full py-3.5 px-4 font-mono text-xs font-bold uppercase flex items-center justify-between border border-ink shadow-editorial"
+                      className="btn-atelier w-full py-2.5 px-4 rounded-lg text-xs font-medium flex items-center justify-between"
                     >
                       <span className="flex items-center gap-2">
-                        <ShoppingBag className="w-4 h-4" />
-                        <span>SHOP THIS PIECE</span>
+                        <ShoppingBag className="w-3.5 h-3.5" />
+                        <span>Shop This Piece</span>
                       </span>
-                      <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />
+                      <ArrowUpRight className="w-4 h-4" />
                     </a>
                   </div>
                 </article>
@@ -534,82 +460,84 @@ export default function KripplingFindsFashionBoutique() {
           </section>
         )}
 
-        {/* 6. BOUTIQUE EDITORIAL HIGHLIGHTS */}
-        <section className="grid grid-cols-1 md:grid-cols-3 border-b border-ink bg-canvas">
-          <div className="p-6 border-b md:border-b-0 md:border-r border-ink flex items-start gap-3.5">
-            <div className="w-9 h-9 bg-blush text-rouge border border-ink flex items-center justify-center shrink-0 shadow-editorial-sm">
-              <Heart className="w-4 h-4 fill-current" />
+        {/* 6. BOUTIQUE TRUST HIGHLIGHTS */}
+        <section className="py-12 border-t border-line grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="flex items-start gap-4">
+            <div className="w-10 h-10 rounded-full bg-blush text-rouge flex items-center justify-center shrink-0">
+              <Heart className="w-4 h-4" />
             </div>
             <div>
-              <h3 className="font-serif italic text-xl text-ink mb-1">
+              <h3 className="font-serif text-xl text-ink mb-1">
                 Curated Women’s Fits &amp; Footwear
               </h3>
-              <p className="text-ink/70 text-xs leading-relaxed">
-                From flattering dresses and everyday basics to comfy heels, sandals, and sneakers tested in our short videos.
+              <p className="text-muted text-xs leading-relaxed">
+                Hand-picked dresses, tops, flattering basics, sandals, heels, and bags styled in our short-form videos.
               </p>
             </div>
           </div>
 
-          <div className="p-6 border-b md:border-b-0 md:border-r border-ink flex items-start gap-3.5">
-            <div className="w-9 h-9 bg-rouge text-canvas border border-ink flex items-center justify-center shrink-0 font-mono text-xs font-bold shadow-editorial-sm">
+          <div className="flex items-start gap-4">
+            <div className="w-10 h-10 rounded-full bg-surface border border-line text-ink flex items-center justify-center shrink-0 font-serif text-base">
               ₱
             </div>
             <div>
-              <h3 className="font-serif italic text-xl text-ink mb-1">
+              <h3 className="font-serif text-xl text-ink mb-1">
                 Direct Philippine Peso (₱) Pricing
               </h3>
-              <p className="text-ink/70 text-xs leading-relaxed">
-                No confusing currency conversions—every price is listed directly in ₱ PHP to match your TikTok Shop checkout.
+              <p className="text-muted text-xs leading-relaxed">
+                All pieces are listed in ₱ PHP to match your local TikTok Shop checkout without guesswork.
               </p>
             </div>
           </div>
 
-          <div className="p-6 flex items-start gap-3.5">
-            <div className="w-9 h-9 bg-ink text-canvas border border-ink flex items-center justify-center shrink-0 shadow-editorial-sm">
-              <Check className="w-4 h-4 text-blush stroke-[2.5]" />
+          <div className="flex items-start gap-4">
+            <div className="w-10 h-10 rounded-full bg-surface border border-line text-rouge flex items-center justify-center shrink-0">
+              <Check className="w-4 h-4" />
             </div>
             <div>
-              <h3 className="font-serif italic text-xl text-ink mb-1">
-                Instant One-Tap Links
+              <h3 className="font-serif text-xl text-ink mb-1">
+                Instant One-Tap Shopping
               </h3>
-              <p className="text-ink/70 text-xs leading-relaxed">
-                Skip digging through video comments—tap any piece to jump straight to the verified product page.
+              <p className="text-muted text-xs leading-relaxed">
+                Skip searching through video comments—tap any look to open the verified store link immediately.
               </p>
             </div>
           </div>
         </section>
-
-        {/* 7. BRANDED ATELIER FOOTER */}
-        <footer className="p-8 md:px-12 bg-ink text-canvas flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <FashionDiamondStar className="w-5 h-5 text-rouge" />
-            <span className="font-serif text-2xl tracking-tight">
-              Krippling<span className="italic text-blush">Finds</span>
-            </span>
-            <span className="font-mono text-xs text-canvas/60">// @KripplingFinds</span>
-          </div>
-          <div className="font-mono text-[11px] text-canvas/60 text-center sm:text-right uppercase">
-            WOMEN’S CLOTHING, FOOTWEAR &amp; ACCESSORIES DIRECTORY &bull; ₱ PHP
-          </div>
-        </footer>
       </main>
+
+      {/* 7. CLEAN BOUTIQUE FOOTER */}
+      <footer className="border-t border-line bg-surface py-10 px-6 md:px-12 mt-8">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <EditorialStar className="w-4 h-4 text-rouge" />
+            <span className="font-serif text-2xl text-ink">
+              Krippling<span className="italic text-rouge">Finds</span>
+            </span>
+            <span className="text-xs text-muted">&bull; @KripplingFinds</span>
+          </div>
+          <div className="text-xs text-muted text-center sm:text-right">
+            Women’s Clothing, Footwear &amp; OOTD Directory &bull; Prices in ₱ PHP
+          </div>
+        </div>
+      </footer>
 
       {/* 8. STICKY BOTTOM BAR (MOBILE VIEWPORT - ONLY RENDERS WHEN PRODUCT EXISTS) */}
       {featuredDeal && (
-        <div className="fixed bottom-0 left-0 right-0 z-50 h-14 bg-canvas border-t border-ink flex items-center justify-between px-4 md:hidden">
-          <div className="flex items-center space-x-2 overflow-hidden pr-2">
-            <span className="bg-rouge text-canvas font-mono text-[10px] font-bold px-2 py-0.5 border border-ink shrink-0">
-              FEATURED FIT
+        <div className="fixed bottom-0 left-0 right-0 z-50 h-16 bg-white/95 border-t border-line flex items-center justify-between px-4 md:hidden">
+          <div className="flex items-center space-x-2.5 overflow-hidden pr-2">
+            <span className="bg-blush text-rouge text-[10px] font-semibold px-2.5 py-1 rounded-full shrink-0">
+              Featured
             </span>
-            <span className="font-serif italic text-base truncate">
+            <span className="font-serif text-lg truncate text-ink">
               {featuredDeal.title}
             </span>
           </div>
           <a
             href={`/go/${featuredDeal.slug}`}
-            className="btn-boutique font-mono text-xs font-bold px-4 h-9 flex items-center shrink-0 border border-ink shadow-editorial-sm"
+            className="btn-atelier text-xs font-medium px-4 py-2 rounded-full flex items-center shrink-0"
           >
-            SHOP ₱{Number(featuredDeal.deal_price).toLocaleString('en-PH')} ↗
+            Shop ₱{Number(featuredDeal.deal_price).toLocaleString('en-PH')} ↗
           </a>
         </div>
       )}
