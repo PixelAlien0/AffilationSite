@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'FEATURED IN VIDEOS — PRODUCT DIRECTORY',
-  description: 'Direct links to products featured in our short-form videos.',
+  title: 'KRIPPLINGFINDS — @KripplingFinds TikTok Shop & Viral Finds',
+  description: 'Shop every viral item and daily find featured in @KripplingFinds TikTok videos.',
 };
 
 export default function RootLayout({

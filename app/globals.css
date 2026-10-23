@@ -13,13 +13,27 @@
 
 /* Dot-Matrix Pattern (dotmatrix.zzzzshawn.cloud inspired) */
 .bg-dot-matrix {
-  background-image: radial-gradient(#000000 1px, transparent 1px);
-  background-size: 8px 8px;
+  background-image: radial-gradient(#000000 1.25px, transparent 1.25px);
+  background-size: 10px 10px;
 }
 
-.bg-dot-matrix-subtle {
-  background-image: radial-gradient(#CCCCCC 1px, transparent 1px);
+.bg-dot-matrix-light {
+  background-image: radial-gradient(#D4D4D4 1.25px, transparent 1.25px);
+  background-size: 12px 12px;
+}
+
+.bg-dot-matrix-white {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.28) 1.25px, transparent 1.25px);
   background-size: 10px 10px;
+}
+
+/* Hard-edge offset shadow (Zero blur) */
+.shadow-hard {
+  box-shadow: 4px 4px 0px 0px #000000;
+}
+
+.shadow-hard-signal {
+  box-shadow: 4px 4px 0px 0px #FF2A00;
 }
 
 /* Instant Mechanical Inversion (Zero Transition Lag) */
@@ -33,4 +47,20 @@
 .btn-swiss:active {
   background-color: #FF2A00;
   color: #FFFFFF;
+}
+
+/* Marquee Animation */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 22s linear infinite;
 }
