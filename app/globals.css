@@ -1,24 +1,38 @@
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  background-color: #FBF9F6;
-  color: #1E191A;
+  background-color: #FFF8F7;
+  color: #22191B;
   -webkit-font-smoothing: antialiased;
 }
 
-/* Refined Boutique Button */
-.btn-atelier {
-  background-color: #1E191A;
-  color: #FBF9F6;
-  transition: background-color 0.2s ease, color 0.2s ease;
+/* Material 3 State Layer Interactive Utilities (Tonal State Overlay, No Blur) */
+.m3-filled-button {
+  background-color: #9C3B56;
+  color: #FFFFFF;
+  border-radius: 9999px;
+  transition: background-color 180ms cubic-bezier(0.2, 0, 0, 1), transform 150ms cubic-bezier(0.2, 0, 0, 1);
 }
 
-.btn-atelier:hover,
-.btn-atelier:active {
-  background-color: #B83253;
-  color: #FBF9F6;
+.m3-filled-button:hover {
+  background-color: #822B44;
+}
+
+.m3-filled-button:active {
+  transform: scale(0.98);
+}
+
+.m3-tonal-button {
+  background-color: #FFD9E0;
+  color: #3F0016;
+  border-radius: 9999px;
+  transition: background-color 180ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+.m3-tonal-button:hover {
+  background-color: #F5C4CE;
 }
